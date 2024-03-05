@@ -1,61 +1,65 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { IoMdArrowDropdown } from "react-icons/io";
 import DropDown from './DropDown';
+// import Form from './Form';
+import Card from '../Pages/Card';
 
 const Navbar = () => {
-
   const [loggedIn, setloggedIn] = useState(false);
-  const [dropMenu,setDropMenu] = useState(false);
+  const [dropMenu, setDropMenu] = useState(false);
 
   const handleClick = () => {
-    setloggedIn(!loggedIn)
+    setloggedIn(!loggedIn);
+  };
 
-  }
-
-  const handleDropMenu =()=>{
+  const handleDropMenu = () => {
     setDropMenu(!dropMenu);
-  }
+  };
 
   return (
-
     <>
-      <div className='w-full h-[4vw] bg-white border-b-2 border-b-gray-400 flex justify-between'>
-        <div className='logo'>
-          <p>Logo</p>
+      <nav className="bg-white border-b border-gray-400 flex justify-end gap-10 items-center h-[5vw] px-4">
+        {/* Logo */}
+        <div className="logo">
+          {/* <p>Logo</p> */}
         </div>
 
-        <div className='p-4 text-[1.2vw] font-light'>
-          <ul className='flex gap-6'>
-            <li className='cursor-pointer hover:border-b-[1px] border-b-gray-950 select-none' id='home'>Home</li>
-            <li className='cursor-pointer hover:border-b-[1px] border-b-gray-950 select-none' id='blog'>Blog</li>
-            <li className='cursor-pointer hover:border-b-[1px] border-b-gray-950 select-none'>Protfolio_Link</li>
-            <div className='ml-16'>
-              <button className='cursor-pointer hover:border-b-[1px] border-b-gray-950 flex select-none' onClick={handleDropMenu}>
-                Contact
-                <p className=' mt-1'><IoMdArrowDropdown /></p>
-                </button> 
-                {dropMenu && <DropDown/>}
+        {/* Navigation Links */}
+        <ul className="flex gap-8 text-gray-700 font-light ">
+          <li className="hover:text-gray-800 cursor-pointer">Home</li>
+          <li className="hover:text-gray-800 cursor-pointer">Blog</li>
+          <li className="hover:text-gray-800 cursor-pointer">Portfolio_Link</li>
+        </ul>
 
-            </div>
-            <div className='ml-2 w-[6vw] '>
-              <li className='cursor-pointer hover:border-b-[1px] border-b-gray-950 select-none w--=' onClick={handleClick}>{loggedIn ? "saroj kumar" : "Login"}</li>
+        {/* Contact Button and Dropdown */}
+        <div className="flex items-center space-x-2">
+          <button
+            className="flex items-center hover:text-gray-800 cursor-pointer"
+            onClick={handleDropMenu}
+          >
+            Contact
+            <IoMdArrowDropdown className="ml-1 mt-1" />
+          </button>
+          {dropMenu && <DropDown/>}
 
-            </div>
-
-          </ul>
+          {/* Login Button */}
+          <button
+            className="hover:text-gray-800 min-w-[8vw]"
+            onClick={handleClick}
+          >
+            {loggedIn ? "Saroj" : "Login"}
+          </button>
         </div>
-
+        
+      </nav>
+      <div className='bg-zinc-100 w-full h-screen'>
+        {/* <Form/> */}
+        <Card/>
       </div>
-
-      {/* <section id='home'>
-
-        <HomePage />
-
-      </section> */}
-
-
+      
+      
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
